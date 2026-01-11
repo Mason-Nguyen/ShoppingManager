@@ -51,6 +51,11 @@ export interface ConfirmResetPasswordData {
   newPassword: string;
 }
 
+export interface AdminUpdatePasswordData {
+  userId: number;
+  newPassword: string;
+}
+
 export interface UpdateUserData {
   firstName: string;
   lastName: string;

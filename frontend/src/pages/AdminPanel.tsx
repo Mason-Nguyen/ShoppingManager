@@ -1,6 +1,7 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import Layout from '../components/Layout';
 import { usersAPI, authAPI } from '../services/api';
+import AdminUpdatePasswordModal from '../components/AdminUpdatePasswordModal';
 import { User, UserRole, RegisterData, UpdateUserData, LoginHistoryEntry } from '../types';
 
 interface FormData extends RegisterData {
@@ -21,6 +22,8 @@ const AdminPanel: React.FC = () => {
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [showLoginHistory, setShowLoginHistory] = useState<boolean>(false);
   const [loginHistory, setLoginHistory] = useState<LoginHistoryEntry[]>([]);
+  const [showUpdatePasswordModal, setShowUpdatePasswordModal] = useState<boolean>(false);
+  const [userForPasswordUpdate, setUserForPasswordUpdate] = useState<User | null>(null);
   const [availableRoles, setAvailableRoles] = useState<RoleInfo[]>([]);
   const [createLoading, setCreateLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
@@ -174,6 +177,16 @@ const AdminPanel: React.FC = () => {
     } catch (error) {
       console.error('Error fetching login history:', error);
     }
+  };
+
+  const handleUpdatePassword = (user: User): void => {
+    setUserForPasswordUpdate(user);
+    setShowUpdatePasswordModal(true);
+  };
+
+  const handlePasswordUpdateSuccess = (): void => {
+    setSuccess('Password updated successfully!');
+    setTimeout(() => setSuccess(''), 5000);
   };
 
   const openEditModal = (user: User): void => {
@@ -376,6 +389,12 @@ const AdminPanel: React.FC = () => {
                         className="text-blue-600 hover:text-blue-900 text-sm"
                       >
                         Edit
+                      </button>
+                      <button
+                        onClick={() => handleUpdatePassword(user)}
+                        className="text-purple-600 hover:text-purple-900 text-sm"
+                      >
+                        Password
                       </button>
                       <button
                         onClick={() => handleToggleStatus(user.id)}
@@ -705,6 +724,19 @@ const AdminPanel: React.FC = () => {
               </div>
             </div>
           </div>
+        )}
+        
+        {/* Admin Update Password Modal */}
+        {showUpdatePasswordModal && userForPasswordUpdate && (
+          <AdminUpdatePasswordModal
+            isOpen={showUpdatePasswordModal}
+            onClose={() => {
+              setShowUpdatePasswordModal(false);
+              setUserForPasswordUpdate(null);
+            }}
+            onSuccess={handlePasswordUpdateSuccess}
+            user={userForPasswordUpdate}
+          />
         )}
       </div>
     </Layout>

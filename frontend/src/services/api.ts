@@ -6,6 +6,7 @@ import {
   ChangePasswordData,
   ResetPasswordData,
   ConfirmResetPasswordData,
+  AdminUpdatePasswordData,
   User,
   UpdateUserData,
   LoginHistoryEntry
@@ -65,6 +66,8 @@ export const authAPI = {
     api.post('/auth/reset-password', data),
   confirmResetPassword: (data: ConfirmResetPasswordData): Promise<AxiosResponse<{ message: string }>> => 
     api.post('/auth/confirm-reset-password', data),
+  adminUpdatePassword: (data: AdminUpdatePasswordData): Promise<AxiosResponse<{ message: string }>> => 
+    api.post('/auth/admin-update-password', data),
   getCurrentUser: (): Promise<AxiosResponse<User>> => 
     api.get('/auth/me'),
 };

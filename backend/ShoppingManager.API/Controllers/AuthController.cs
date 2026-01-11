@@ -132,6 +132,21 @@ namespace ShoppingManager.API.Controllers
             return Ok(new { message = "Password reset successfully" });
         }
         
+        [HttpPost("admin-update-password")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> AdminUpdatePassword([FromBody] AdminUpdatePasswordDto adminUpdatePasswordDto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            
+            var result = await _authService.AdminUpdatePasswordAsync(adminUpdatePasswordDto);
+            
+            if (!result)
+                return BadRequest(new { message = "User not found" });
+            
+            return Ok(new { message = "Password updated successfully" });
+        }
+        
         [HttpPost("logout")]
         [Authorize]
         public async Task<IActionResult> Logout()

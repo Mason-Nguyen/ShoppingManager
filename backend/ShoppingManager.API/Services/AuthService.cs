@@ -16,6 +16,7 @@ namespace ShoppingManager.API.Services
         Task<bool> ChangePasswordAsync(int userId, ChangePasswordDto changePasswordDto);
         Task<bool> ResetPasswordAsync(ResetPasswordDto resetPasswordDto);
         Task<bool> ConfirmResetPasswordAsync(ConfirmResetPasswordDto confirmResetPasswordDto);
+        Task<bool> AdminUpdatePasswordAsync(AdminUpdatePasswordDto adminUpdatePasswordDto);
         Task LogoutAsync(int userId, string ipAddress);
     }
     
@@ -167,6 +168,18 @@ namespace ShoppingManager.API.Services
             user.ResetToken = null;
             user.ResetTokenExpiry = null;
             
+            await _context.SaveChangesAsync();
+            
+            return true;
+        }
+        
+        public async Task<bool> AdminUpdatePasswordAsync(AdminUpdatePasswordDto adminUpdatePasswordDto)
+        {
+            var user = await _context.Users.FindAsync(adminUpdatePasswordDto.UserId);
+            if (user == null)
+                return false;
+            
+            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(adminUpdatePasswordDto.NewPassword);
             await _context.SaveChangesAsync();
             
             return true;
