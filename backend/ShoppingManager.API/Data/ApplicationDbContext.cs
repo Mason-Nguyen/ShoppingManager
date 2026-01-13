@@ -20,6 +20,7 @@ namespace ShoppingManager.API.Data
             // User configuration
             modelBuilder.Entity<User>(entity =>
             {
+                entity.ToTable("User"); // Singular table name
                 entity.HasKey(e => e.Id);
                 entity.HasIndex(e => e.Email).IsUnique();
                 entity.Property(e => e.Email).HasMaxLength(256);
@@ -31,6 +32,7 @@ namespace ShoppingManager.API.Data
             // LoginHistory configuration
             modelBuilder.Entity<LoginHistory>(entity =>
             {
+                entity.ToTable("LoginHistory"); // Singular table name
                 entity.HasKey(e => e.Id);
                 entity.HasOne(e => e.User)
                       .WithMany(u => u.LoginHistories)
@@ -43,6 +45,7 @@ namespace ShoppingManager.API.Data
             // Product configuration
             modelBuilder.Entity<Product>(entity =>
             {
+                entity.ToTable("Product"); // Singular table name
                 entity.HasKey(e => e.Id);
                 entity.HasIndex(e => e.Code).IsUnique();
                 entity.Property(e => e.Code).HasMaxLength(20).IsRequired();
