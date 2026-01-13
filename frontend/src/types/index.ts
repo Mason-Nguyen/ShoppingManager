@@ -9,6 +9,18 @@ export interface User {
   lastLoginAt?: string;
 }
 
+export interface Product {
+  id: string;
+  code: string;
+  name: string;
+  unit: string;
+  refPrice: number;
+  image?: string;
+  description?: string;
+  createdAt: string;
+  updatedAt?: string;
+}
+
 export enum UserRole {
   User = 0,
   Admin = 1,
@@ -54,6 +66,24 @@ export interface ConfirmResetPasswordData {
 export interface AdminUpdatePasswordData {
   userId: number;
   newPassword: string;
+}
+
+export interface CreateProductData {
+  code: string;
+  name: string;
+  unit: string;
+  refPrice: number;
+  image?: string;
+  description?: string;
+}
+
+export interface UpdateProductData {
+  code: string;
+  name: string;
+  unit: string;
+  refPrice: number;
+  image?: string;
+  description?: string;
 }
 
 export interface UpdateUserData {

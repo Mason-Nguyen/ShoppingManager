@@ -5,6 +5,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import AdminPanel from './pages/AdminPanel';
+import ProductManagement from './pages/ProductManagement';
 import Unauthorized from './pages/Unauthorized';
 import Debug from './pages/Debug';
 import ChangePassword from './pages/ChangePassword';
@@ -49,6 +50,14 @@ const App: React.FC = () => {
               element={
                 <ProtectedRoute requiredRole={UserRole.Admin}>
                   <AdminPanel />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/products"
+              element={
+                <ProtectedRoute requiredRole={UserRole.Purchase}>
+                  <ProductManagement />
                 </ProtectedRoute>
               }
             />

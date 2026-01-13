@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShoppingManager.API.Data;
 
@@ -11,9 +12,11 @@ using ShoppingManager.API.Data;
 namespace ShoppingManager.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260113040433_SeedProductData")]
+    partial class SeedProductData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -110,7 +113,7 @@ namespace ShoppingManager.API.Migrations
                         {
                             Id = new Guid("11111111-1111-1111-1111-111111111111"),
                             Code = "LAPTOP001",
-                            CreatedAt = new DateTime(2026, 1, 13, 4, 27, 23, 517, DateTimeKind.Utc).AddTicks(8069),
+                            CreatedAt = new DateTime(2026, 1, 13, 4, 4, 32, 749, DateTimeKind.Utc).AddTicks(2692),
                             Description = "15.6-inch business laptop with Intel Core i7 processor",
                             Name = "Dell Latitude 5520 Laptop",
                             RefPrice = 1299.99m,
@@ -120,7 +123,7 @@ namespace ShoppingManager.API.Migrations
                         {
                             Id = new Guid("22222222-2222-2222-2222-222222222222"),
                             Code = "MOUSE001",
-                            CreatedAt = new DateTime(2026, 1, 13, 4, 27, 23, 517, DateTimeKind.Utc).AddTicks(8074),
+                            CreatedAt = new DateTime(2026, 1, 13, 4, 4, 32, 749, DateTimeKind.Utc).AddTicks(2696),
                             Description = "Advanced wireless mouse for productivity",
                             Name = "Logitech MX Master 3 Mouse",
                             RefPrice = 99.99m,
@@ -130,7 +133,7 @@ namespace ShoppingManager.API.Migrations
                         {
                             Id = new Guid("33333333-3333-3333-3333-333333333333"),
                             Code = "PAPER001",
-                            CreatedAt = new DateTime(2026, 1, 13, 4, 27, 23, 517, DateTimeKind.Utc).AddTicks(8088),
+                            CreatedAt = new DateTime(2026, 1, 13, 4, 4, 32, 749, DateTimeKind.Utc).AddTicks(2700),
                             Description = "500 sheets of white A4 copy paper",
                             Name = "A4 Copy Paper",
                             RefPrice = 4.99m,
@@ -140,7 +143,7 @@ namespace ShoppingManager.API.Migrations
                         {
                             Id = new Guid("44444444-4444-4444-4444-444444444444"),
                             Code = "PEN001",
-                            CreatedAt = new DateTime(2026, 1, 13, 4, 27, 23, 517, DateTimeKind.Utc).AddTicks(8092),
+                            CreatedAt = new DateTime(2026, 1, 13, 4, 4, 32, 749, DateTimeKind.Utc).AddTicks(2704),
                             Description = "Set of 10 blue ballpoint pens",
                             Name = "Ballpoint Pen Set",
                             RefPrice = 12.50m,
@@ -150,7 +153,7 @@ namespace ShoppingManager.API.Migrations
                         {
                             Id = new Guid("55555555-5555-5555-5555-555555555555"),
                             Code = "MONITOR001",
-                            CreatedAt = new DateTime(2026, 1, 13, 4, 27, 23, 517, DateTimeKind.Utc).AddTicks(8094),
+                            CreatedAt = new DateTime(2026, 1, 13, 4, 4, 32, 749, DateTimeKind.Utc).AddTicks(2706),
                             Description = "Full HD 1920x1080 LED monitor",
                             Name = "Samsung 24-inch Monitor",
                             RefPrice = 249.99m,
@@ -217,24 +220,13 @@ namespace ShoppingManager.API.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2026, 1, 13, 4, 27, 23, 389, DateTimeKind.Utc).AddTicks(9388),
+                            CreatedAt = new DateTime(2026, 1, 13, 4, 4, 32, 749, DateTimeKind.Utc).AddTicks(2089),
                             Email = "admin@shoppingmanager.com",
                             FirstName = "System",
                             IsActive = true,
                             LastName = "Administrator",
-                            PasswordHash = "$2a$11$BAwmy1TmtnSjhnP5JA5vru8pjSxinjOdUWcvdn2dH59uiY4sUA1AC",
+                            PasswordHash = "$2a$11$r28qkKUocikODyNzXN/4he26o2cECIISdlEudhS5Vq2vQa/jstpgu",
                             Role = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedAt = new DateTime(2026, 1, 13, 4, 27, 23, 517, DateTimeKind.Utc).AddTicks(7380),
-                            Email = "purchase@shoppingmanager.com",
-                            FirstName = "Purchase",
-                            IsActive = true,
-                            LastName = "Manager",
-                            PasswordHash = "$2a$11$A1aBucbOLFgh5MNsPhjnx.gPVNwhDLOhoLWv8blLqTQxVPVhKLtN2",
-                            Role = 5
                         });
                 });
 

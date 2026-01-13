@@ -11,6 +11,10 @@ const isAdmin = (role: number | undefined): boolean => {
     return role === UserRole.Admin;
   };
 
+const isPurchase = (role: number | undefined): boolean => {
+    return role === UserRole.Purchase;
+  };
+
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
@@ -87,6 +91,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 >
                   Dashboard (Always Visible)
                 </Link>
+                {isPurchase(user?.role) && (
+                  <Link
+                    to="/products"
+                    className="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    Products
+                  </Link>
+                )}
                 {isAdmin(user?.role) && (
                   <Link
                     to="/admin"

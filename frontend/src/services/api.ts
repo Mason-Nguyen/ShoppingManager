@@ -9,7 +9,10 @@ import {
   AdminUpdatePasswordData,
   User,
   UpdateUserData,
-  LoginHistoryEntry
+  LoginHistoryEntry,
+  Product,
+  CreateProductData,
+  UpdateProductData
 } from '../types';
 
 const API_BASE_URL = 'https://localhost:7000/api';
@@ -88,6 +91,24 @@ export const usersAPI = {
     api.patch(`/users/${id}/toggle-status`),
   getUserLoginHistory: (id: number): Promise<AxiosResponse<LoginHistoryEntry[]>> => 
     api.get(`/users/${id}/login-history`),
+};
+
+// Products API
+export const productsAPI = {
+  getAllProducts: (): Promise<AxiosResponse<Product[]>> => 
+    api.get('/product'),
+  getProductById: (id: string): Promise<AxiosResponse<Product>> => 
+    api.get(`/product/${id}`),
+  getProductByCode: (code: string): Promise<AxiosResponse<Product>> => 
+    api.get(`/product/by-code/${code}`),
+  createProduct: (productData: CreateProductData): Promise<AxiosResponse<Product>> => 
+    api.post('/product', productData),
+  updateProduct: (id: string, productData: UpdateProductData): Promise<AxiosResponse<Product>> => 
+    api.put(`/product/${id}`, productData),
+  deleteProduct: (id: string): Promise<AxiosResponse<{ message: string }>> => 
+    api.delete(`/product/${id}`),
+  checkProductCode: (code: string, excludeId?: string): Promise<AxiosResponse<{ exists: boolean }>> => 
+    api.get(`/product/check-code/${code}${excludeId ? `?excludeId=${excludeId}` : ''}`),
 };
 
 export default api;
